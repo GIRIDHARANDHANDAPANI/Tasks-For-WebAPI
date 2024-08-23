@@ -9,7 +9,7 @@ namespace DataAccessLayer
 {
     public class CorseDetailsRepository
     {
-        string connectionString = "server=DESKTOP-8VD1A1F\\SQLEXPRESS;database=Course;user Id =sa;password=Anaiyaan@123;";
+        string connectionString = "server=DESKTOP-UCPA9BN;database=Course;user Id =sa;password=Anaiyaan@123;";
         SqlConnection con = null;
         public CorseDetailsRepository()
         {
@@ -20,7 +20,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var selectQuery = $"exec_SelectAllStudents";
+                var selectQuery = $"exec SelectAllStudents";
                 con.Open();
                 List<CourseDetails> result = con.Query<CourseDetails>(selectQuery).ToList();
                 con.Close();
@@ -38,7 +38,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var selectQuery = $"exec_SelectByName_'{username}'";
+                var selectQuery = $"exec SelectByName '{username}'";
                 con.Open();
                 CourseDetails result = con.QueryFirstOrDefault<CourseDetails>(selectQuery);
                 con.Close();
@@ -56,7 +56,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var insertQuery = $"exec_InsertUser_'{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate}','{reg.Enddate}',{reg.Fees}";
+                var insertQuery = $"exec InsertUser '{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate}','{reg.Enddate}',{reg.Fees}";
                 con.Open();
                 con.Execute(insertQuery);
                 con.Close();
@@ -72,7 +72,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var updateQuery = $"exec_UpdateUser_{reg.CourseDetailsID},'{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate}','{reg.Enddate}',{reg.Fees}";
+                var updateQuery = $"exec UpdateUser {reg.CourseDetailsID},'{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate}','{reg.Enddate}',{reg.Fees}";
                 //var connectionString = "server=DESKTOP-8VD1A1F\\SQLEXPRESS;database=batch9;user Id =sa;password=Anaiyaan@123;";
 
                 con.Open();
@@ -91,7 +91,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var updateQuery = $"exec_DeleteUser_{regId}";
+                var updateQuery = $"exec DeleteUser {regId}";
                 con.Open();
                 con.Execute(updateQuery);
                 con.Close();

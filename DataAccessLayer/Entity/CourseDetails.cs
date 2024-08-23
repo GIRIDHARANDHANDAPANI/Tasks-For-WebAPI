@@ -12,7 +12,14 @@ namespace DataAccessLayer.Entity
         public string Name { get; set; }
         public string InstitutionName { get; set; }
         public long EnquiryNumber { get; set; }
-        public int Duration { get; set; }
+        public int Duration 
+        {
+            get
+            {
+                return ((Enddate.Year - Startdate.Year) * 12) + Enddate.Month - Startdate.Month;
+
+            }
+        }
         public DateTime Startdate { get; set; }
         public DateTime Enddate { get; set; }
         public int Fees { get; set; }
