@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer
 {
-    public class CorseDetailsRepository
+    public class CourseDetailsRepository: ICourseDetailsRepository
     {
-        string connectionString = "server=DESKTOP-UCPA9BN;database=Course;user Id =sa;password=Anaiyaan@123;";
+        string connectionString = string.Empty; //"server=DESKTOP-UCPA9BN;database=Course;user Id =sa;password=Anaiyaan@123;";
         SqlConnection con = null;
-        public CorseDetailsRepository()
+        public CourseDetailsRepository(IConfiguration configuration)
         {
+            connectionString = configuration.GetConnectionString("DbConnection");
             con = new SqlConnection(connectionString);
         }
 

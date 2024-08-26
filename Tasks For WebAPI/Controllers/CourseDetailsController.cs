@@ -14,10 +14,10 @@ namespace Tasks_For_WebAPI.Controllers
     [ApiController]
     public class CourseDetailsController : ControllerBase
     {
-        CorseDetailsRepository course = null;
-        public CourseDetailsController()
+        ICourseDetailsRepository course = null;
+        public CourseDetailsController(ICourseDetailsRepository cours)
         {
-            course = new CorseDetailsRepository();
+            course = cours;
         }
         // GET: api/<CourseDetailsController>
         [HttpGet]
