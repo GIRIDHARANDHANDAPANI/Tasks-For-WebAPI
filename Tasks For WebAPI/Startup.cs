@@ -1,4 +1,4 @@
-using DataAccessLayer;
+ using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,7 +22,9 @@ namespace Tasks_For_WebAPI
         {
             var connection = configuration.GetConnectionString("DbConnection");
             var value = configuration.GetSection("Connections:DbConnection").Value;
-            var result = configuration.GetValue<string>("SMTP:Toaddress");
+            var fromaddress = configuration.GetValue<string>("SMTP:FromAddress");
+            var password = configuration.GetValue<string>("SMTP:Password");
+
             Configuration = configuration;
         }
 
