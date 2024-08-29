@@ -15,9 +15,9 @@ namespace Tasks_For_WebAPI.Controllers
     [ApiController]
     public class EmailController : ControllerBase
     {
-        private readonly EmailRepository _emailrepository;
+        private readonly IEmailRepository _emailrepository;
         private readonly IConfiguration _configuration;
-        public EmailController(EmailRepository emailrepository, IConfiguration configuration)
+        public EmailController(IEmailRepository emailrepository, IConfiguration configuration)
         {
             _configuration = configuration;
             _emailrepository = emailrepository;

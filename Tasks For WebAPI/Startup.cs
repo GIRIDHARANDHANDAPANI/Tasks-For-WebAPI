@@ -1,8 +1,10 @@
- using DataAccessLayer;
+using BusinessAccessLayer;
+using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,8 +35,12 @@ namespace Tasks_For_WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICourseDetailsRepository, CourseDetailsRepository>();
+            var connection = Configuration.GetConnectionString("DbConnection");
+            services.AddDbContext<LocationDbcontext>(options => options.UseSqlServer(connection));
 
+            services.AddTransient<ILocationRepository, LocationRepository>();
+            services.AddTransient<ICourseDetailsRepository, CourseDetailsRepository>();
+            services.AddTransient<IEmailRepository,EmailRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

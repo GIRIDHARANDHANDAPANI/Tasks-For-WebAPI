@@ -5,7 +5,7 @@ using System.Net.Mail;
 
 namespace BusinessAccessLayer
 {
-    public class EmailRepository
+    public class EmailRepository:IEmailRepository
     {
         private readonly IConfiguration Configuration;
         public EmailRepository(IConfiguration configuration)
