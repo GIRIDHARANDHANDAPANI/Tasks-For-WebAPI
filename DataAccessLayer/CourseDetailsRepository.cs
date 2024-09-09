@@ -58,7 +58,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var insertQuery = $"exec InsertUser '{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate}','{reg.Enddate}',{reg.Fees}";
+                var insertQuery = $"exec InsertUser '{reg.Name}','{reg.InstitutionName}',{reg.EnquiryNumber},'{reg.Startdate.ToString("yyyy-MM-dd")}','{reg.Enddate.ToString("yyyy-MM-dd")}',{reg.Fees}";
                 con.Open();
                 con.Execute(insertQuery);
                 con.Close();
